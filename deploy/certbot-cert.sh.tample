@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+certbot certonly --standalone --non-interactive --agree-tos --register-unsafely-without-email -d DOMAIN_NAME
+
+cd /etc/letsencrypt/live/DOMAIN_NAME
+cat fullchain.pem privkey.pem > /var/lib/haproxy/v2ray/tls-haproxy.pem
+
+service haproxy restart

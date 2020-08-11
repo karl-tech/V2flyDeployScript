@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+cd /etc/letsencrypt/live/DOMAIN_NAME
+cat fullchain.pem privkey.pem > /var/lib/haproxy/v2ray/tls-haproxy.pem
+
+service haproxy restart
