@@ -10,10 +10,8 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt update
 sudo apt -y install debconf-utils
 echo '* libraries/restart-without-asking boolean true' | sudo debconf-set-selections
-echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
-echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
 sudo apt -y upgrade
-sudo apt install -y curl iptables iptables-persistent xtables-addons-common software-properties-common
+sudo apt install -y curl software-properties-common
 
 # create new user for haproxy and v2ray
 useradd proxy -s /usr/sbin/nologin
@@ -62,38 +60,6 @@ sudo ufw allow http
 sudo ufw allow https
 sudo ufw --force enable
 
-# block BT
-iptables -A INPUT -m string --string "BitTorrent" --algo bm -j DROP
-iptables -A INPUT -m string --string "BitTorrent protocol" --algo bm -j DROP
-iptables -A INPUT -m string --string "peer_id=" --algo bm -j DROP
-iptables -A INPUT -m string --string ".torrent" --algo bm -j DROP
-iptables -A INPUT -m string --string "announce.php?passkey=" --algo bm -j DROP
-iptables -A INPUT -m string --string "torrent" --algo bm -j DROP
-iptables -A INPUT -m string --string "announce" --algo bm -j DROP
-iptables -A INPUT -m string --string "info_hash" --algo bm -j DROP
-iptables -A INPUT -m string --string "tracker" --algo bm -j DROP
-iptables -A INPUT -m string --string "get_peers" --algo bm -j DROP
-iptables -A INPUT -m string --string "announce_peer" --algo bm -j DROP
-iptables -A INPUT -m string --string "find_node" --algo bm -j DROP
-iptables -A INPUT -m ipp2p --edk --kazaa --gnu --bit --apple --dc --soul --winmx --ares -j DROP
-# IPv6
-ip6tables -A INPUT -m string --string "BitTorrent" --algo bm -j DROP
-ip6tables -A INPUT -m string --string "BitTorrent protocol" --algo bm -j DROP
-ip6tables -A INPUT -m string --string "peer_id=" --algo bm -j DROP
-ip6tables -A INPUT -m string --string ".torrent" --algo bm -j DROP
-ip6tables -A INPUT -m string --string "announce.php?passkey=" --algo bm -j DROP
-ip6tables -A INPUT -m string --string "torrent" --algo bm -j DROP
-ip6tables -A INPUT -m string --string "announce" --algo bm -j DROP
-ip6tables -A INPUT -m string --string "info_hash" --algo bm -j DROP
-ip6tables -A INPUT -m string --string "tracker" --algo bm -j DROP
-ip6tables -A INPUT -m string --string "get_peers" --algo bm -j DROP
-ip6tables -A INPUT -m string --string "announce_peer" --algo bm -j DROP
-ip6tables -A INPUT -m string --string "find_node" --algo bm -j DROP
-
-netfilter-persistent save
-netfilter-persistent reload
-
-sudo reboot
 
 
 
