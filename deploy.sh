@@ -10,4 +10,5 @@ sed -i "s/DOMAIN_NAME/$domain/g" deploy/certbot-cert.sh
 cp deploy/certbot-v2ray-renew-hook.sh.tample deploy/certbot-v2ray-renew-hook.sh
 sed -i "s/DOMAIN_NAME/$domain/g" deploy/certbot-v2ray-renew-hook.sh
 
-sh deploy/setup.sh
+cd deploy
+sh setup.sh
