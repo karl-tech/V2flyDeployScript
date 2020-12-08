@@ -3,7 +3,7 @@
 # optimizing system
 sudo cp local.conf /etc/sysctl.d/local.conf
 sudo sysctl --system
-sudo cp setunnel_limits.conf /etc/security/limits.d/v2ray_limits.conf
+sudo cp v2ray_limits.conf /etc/security/limits.d/v2ray_limits.conf
 
 # install package
 export DEBIAN_FRONTEND=noninteractive
