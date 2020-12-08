@@ -23,6 +23,7 @@ sudo apt install -y haproxy=2.0.\*
 cp haproxy.cfg /etc/haproxy/haproxy.cfg
 mkdir /var/lib/haproxy/v2ray
 chown proxy:root /var/lib/haproxy/v2ray
+service haproxy restart
 
 # install v2ray
 curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh | bash
