@@ -45,15 +45,6 @@ sh certbot-cert.sh
 cp certbot-v2ray-renew-hook.sh /etc/letsencrypt/renewal-hooks/post/certbot-v2ray-renew-hook.sh
 chmod 755 /etc/letsencrypt/renewal-hooks/post/certbot-v2ray-renew-hook.sh
 
-# config nginx
-apt install -y nginx
-service nginx stop
-rm /etc/nginx/sites-available/*
-rm /etc/nginx/sites-enabled/*
-cp nginx-v2ray-site.conf /etc/nginx/sites-available/nginx-v2ray-site.conf
-ln -s /etc/nginx/sites-available/nginx-v2ray-site.conf /etc/nginx/sites-enabled/nginx-v2ray-site.conf
-service nginx start
-
 # setup ufw
 sudo ufw allow ssh
 sudo ufw allow http
